@@ -18,6 +18,7 @@ func main() {
 		Handler: mux,
 	}
 
+	// 自己署名SSL証明書とサーバの秘密鍵の生成
 	gencert()
 
 	// HTTPSで運用するには'ListenAndServeTLS'を使用

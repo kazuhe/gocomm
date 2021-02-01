@@ -8,4 +8,8 @@
 # Test binary
 *.test
 
+# SSL Certificate & Private key
+cert.pem
+key.pem
+
 .DS_Store
