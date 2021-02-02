@@ -2,6 +2,8 @@ package main
 
 import (
 	"net/http"
+
+	"golang.org/x/net/http2"
 )
 
 func main() {
@@ -12,6 +14,7 @@ func main() {
 	// 全てのハンドラ関数は第1引数に'ResponseWriter'をとり、
 	// 第2引数に'Request'をとるので改めて引数を渡す必要はない
 	mux.HandleFunc("/", index)
+	mux.HandleFunc("/hello", hello)
 
 	server := &http.Server{
 		Addr:    "127.0.0.1:8080",
@@ -20,6 +23,9 @@ func main() {
 
 	// 自己署名SSL証明書とサーバの秘密鍵の生成
 	gencert()
+
+	// HTTP/2で動作するサーバを用意
+	http2.ConfigureServer(server, &http2.Server{})
 
 	// HTTPSで運用するには'ListenAndServeTLS'を使用
 	// cert.pem: SSL証明書, key.pem: サーバ用の秘密鍵
