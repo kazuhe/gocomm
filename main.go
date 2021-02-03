@@ -15,6 +15,7 @@ func main() {
 	// 第2引数に'Request'をとるので改めて引数を渡す必要はない
 	mux.HandleFunc("/", index)
 	mux.HandleFunc("/hello", hello)
+	mux.HandleFunc("/uploaded", uploaded)
 
 	server := &http.Server{
 		Addr:    "127.0.0.1:8080",
