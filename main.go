@@ -16,6 +16,9 @@ func main() {
 	mux.HandleFunc("/", index)
 	mux.HandleFunc("/hello", hello)
 	mux.HandleFunc("/uploaded", uploaded)
+	mux.HandleFunc("/write", write)
+	mux.HandleFunc("/501", notImplemented)
+	mux.HandleFunc("/json", jsonWriter)
 
 	server := &http.Server{
 		Addr:    "127.0.0.1:8080",
