@@ -21,6 +21,8 @@ func main() {
 	mux.HandleFunc("/json", jsonWriter)
 	mux.HandleFunc("/set_cookie", setCookie)
 	mux.HandleFunc("/get_cookie", getCookie)
+	mux.HandleFunc("/set_message", setMessage)
+	mux.HandleFunc("/show_message", showMessage)
 
 	server := &http.Server{
 		Addr:    "127.0.0.1:8080",
