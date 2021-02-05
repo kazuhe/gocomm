@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"text/template"
 )
 
 func index(w http.ResponseWriter, r *http.Request) {
@@ -57,4 +58,10 @@ func jsonWriter(w http.ResponseWriter, r *http.Request) {
 	}
 	json, _ := json.Marshal(post)
 	w.Write(json)
+}
+
+// genHtml テンプレートエンジンの起動
+func genHTML(w http.ResponseWriter, r *http.Request) {
+	t, _ := template.ParseFiles("templates/tmpl.html")
+	t.Execute(w, "Hello World!")
 }
