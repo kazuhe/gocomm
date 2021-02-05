@@ -62,6 +62,7 @@ func jsonWriter(w http.ResponseWriter, r *http.Request) {
 
 // genHtml テンプレートエンジンの起動
 func genHTML(w http.ResponseWriter, r *http.Request) {
-	t, _ := template.ParseFiles("templates/tmpl.html")
-	t.Execute(w, "Hello World!")
+	t := template.Must(template.ParseFiles("templates/tmpl.html"))
+	daysOfWeek := []string{"月", "火", "水", "木", "金", "土", "日"}
+	t.Execute(w, daysOfWeek)
 }

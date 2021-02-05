@@ -7,6 +7,14 @@
   <title>gocomm</title>
 </head>
 <body>
-  <h1>{{ . }}</h1>
+  <h1>gocomm</h1>
+
+  <ul>
+    {{ range . }}
+      <li>{{ . }}</li>
+    {{ else }}
+      <li>表示するものはありません</li>
+    {{ end }}
+  </ul>
 </body>
 </html>
