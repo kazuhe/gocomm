@@ -1,0 +1,14 @@
+{{ define "nav" }}
+
+<nav>
+  <div>Nav</div>
+  <ul>
+    {{ range . }}
+      <li>{{ . }}</li>
+    {{ else }}
+      <li>表示するものはありません</li>
+    {{ end }}
+  </ul>
+</nav>
+
+{{ end }}

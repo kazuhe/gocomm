@@ -1,3 +1,5 @@
+{{ define "layout" }}
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,6 +11,8 @@
 <body>
   <h1>gocomm</h1>
 
+  {{ template "nav" . }}
+
   <ul>
     {{ range . }}
       <li>{{ . }}</li>
@@ -18,3 +22,5 @@
   </ul>
 </body>
 </html>
+
+{{ end }}
