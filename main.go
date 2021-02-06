@@ -7,6 +7,9 @@ import (
 )
 
 func main() {
+	// メモリ内（実行中のアプリケーションにデータを保存する例）
+	callMemory()
+
 	// mux マルチプレクサを生成
 	mux := http.NewServeMux()
 

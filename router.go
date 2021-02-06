@@ -43,8 +43,8 @@ func notImplemented(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "501 Not Implemented")
 }
 
-// Post ユーザーの投稿を表す構造体
-type Post struct {
+// PostData ユーザーの投稿を表す構造体
+type PostData struct {
 	User    string
 	Threads []string
 }
@@ -52,7 +52,7 @@ type Post struct {
 // jsonWriter ResponseWriterを直接使ってjson出力の書き込み
 func jsonWriter(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	post := &Post{
+	post := &PostData{
 		User:    "Kazuhe",
 		Threads: []string{"1番目", "2番目", "3番目"},
 	}
