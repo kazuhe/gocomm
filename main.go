@@ -10,6 +10,9 @@ func main() {
 	// メモリ内（実行中のアプリケーションにデータを保存する例）
 	callMemory()
 
+	// ファイルの読み書きの例
+	saveDataToFile()
+
 	// mux マルチプレクサを生成
 	mux := http.NewServeMux()
 
