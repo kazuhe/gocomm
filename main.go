@@ -3,10 +3,14 @@ package main
 import (
 	"net/http"
 
+	"github.com/kazuhe/gocomm/data"
 	"golang.org/x/net/http2"
 )
 
 func main() {
+	// DBの挙動確認用
+	data.DBConnect()
+
 	// メモリ内（実行中のアプリケーションにデータを保存する例）
 	callMemory()
 
