@@ -38,11 +38,13 @@ func init() {
 	}
 }
 
+// Create 新規コメントの生成
 func (comment *Comment) Create() (err error) {
 	if comment.Post == nil {
 		err = errors.New("投稿が見つかりません")
 		return
 	}
+	// post_idに構造体CommentのPostフィールドに定義しているポインタから参照したIDを渡してCommentとPostの関係を作成
 	err = DB.QueryRow("insert into comments (content, author, post_id) values ($1, $2, $3) returning id", comment.Content, comment.Author, comment.Post.ID).Scan(&comment.ID)
 	return
 }
