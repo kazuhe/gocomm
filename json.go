@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
 )
 
@@ -45,5 +46,39 @@ func parseJSON() {
 			return
 		}
 		fmt.Println(post)
+	}
+}
+
+func genJSON() {
+	post := PostType{
+		ID:      1,
+		Content: "JSON生成コンテンツ",
+		Author: Author{
+			ID:   2,
+			Name: "kazuhe",
+		},
+		Comments: []Comment{
+			Comment{
+				ID:      3,
+				Content: "コメント",
+				Author:  "Adam",
+			},
+			Comment{
+				ID:      4,
+				Content: "コメント2",
+				Author:  "Betty",
+			},
+		},
+	}
+
+	output, err := json.MarshalIndent(&post, "", "\t")
+	if err != nil {
+		fmt.Println("Error marshalling to JSON:", err)
+		return
+	}
+	err = ioutil.WriteFile("genpost.json", output, 0644)
+	if err != nil {
+		fmt.Println("Error writing JSON to file:", err)
+		return
 	}
 }

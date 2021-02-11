@@ -13,6 +13,7 @@ func main() {
 	// xml.ParseXML()
 
 	parseJSON()
+	genJSON()
 
 	// DBの挙動確認用
 	data.DBConnect()
