@@ -4,13 +4,15 @@ import (
 	"net/http"
 
 	"github.com/kazuhe/gocomm/data"
-	"github.com/kazuhe/gocomm/xml"
+	// "github.com/kazuhe/gocomm/xml"
 	"golang.org/x/net/http2"
 )
 
 func main() {
 	// XMLの解析テスト
-	xml.ParseXML()
+	// xml.ParseXML()
+
+	parseJSON()
 
 	// DBの挙動確認用
 	data.DBConnect()
