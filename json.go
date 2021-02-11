@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 )
 
@@ -58,12 +57,12 @@ func genJSON() {
 			Name: "kazuhe",
 		},
 		Comments: []Comment{
-			Comment{
+			{
 				ID:      3,
 				Content: "コメント",
 				Author:  "Adam",
 			},
-			Comment{
+			{
 				ID:      4,
 				Content: "コメント2",
 				Author:  "Betty",
@@ -71,14 +70,17 @@ func genJSON() {
 		},
 	}
 
-	output, err := json.MarshalIndent(&post, "", "\t")
+	jsonFile, err := os.Create("genpost.json")
 	if err != nil {
-		fmt.Println("Error marshalling to JSON:", err)
+		fmt.Println("Error creating JSON file:", err)
 		return
 	}
-	err = ioutil.WriteFile("genpost.json", output, 0644)
+
+	encoder := json.NewEncoder(jsonFile)
+	encoder.SetIndent("", "\t")
+	err = encoder.Encode(&post)
 	if err != nil {
-		fmt.Println("Error writing JSON to file:", err)
+		fmt.Println("Error encoding JSON to file:", err)
 		return
 	}
 }
