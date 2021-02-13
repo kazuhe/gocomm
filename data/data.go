@@ -27,7 +27,7 @@ func init() {
 	}
 }
 
-// Retrive IDを元に1件のPostを取得
+// Retrive IDを元にDBから1件のPostを取得
 func Retrive(id int) (post Post, err error) {
 	post = Post{}
 	// SQLのselectコマンドを使って取得したデータ（id, content, author）をpostに参照渡し
@@ -56,13 +56,13 @@ func (post *Post) Create() (err error) {
 // Update 投稿内容の更新
 func (post *Post) Update() (err error) {
 	// 'Exec'は'QueryRow'と違って返される値に関心がない, 構造体Postを更新する必要も無いのでフィールドの値をもってupdateするだけ
-	_, err = DB.Exec("update posts set content = $2, author =$3 where id = $1, post.ID, post.Content, post.Author")
+	_, err = DB.Exec("update posts set content = $2, author = $3 where id = $1", post.ID, post.Content, post.Author)
 	return
 }
 
 // Delete 投稿の削除
 func (post *Post) Delete() (err error) {
 	// Postのidをもとにdelete処理
-	_, err = DB.Exec("delete from posts where id = $1, post.ID")
+	_, err = DB.Exec("delete from posts where id = $1", post.ID)
 	return
 }
