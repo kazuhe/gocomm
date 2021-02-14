@@ -2,6 +2,8 @@ package data
 
 import (
 	"database/sql"
+	"log"
+	"os"
 
 	// PostgreSQLのデータベースドライバ
 	_ "github.com/lib/pq"
@@ -21,9 +23,9 @@ var DB *sql.DB
 func init() {
 	var err error
 	// 'sql.Open'は単にその後のDBへの接続に必要になる構造体を設定するだけでデータベースに接続する訳ではない
-	DB, err = sql.Open("postgres", "user=kazuhe dbname=kazuhe password=kazuhe sslmode=disable")
+	DB, err = sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
-		panic(err)
+		log.Fatalf("Error openig database: %q", err)
 	}
 }
 
