@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/httputil"
+	"os"
 	"path"
 	"strconv"
 
@@ -14,14 +15,15 @@ import (
 
 func main() {
 	server := http.Server{
-		Addr: "127.0.0.1:8080",
+		// Heroku環境変数からポート番号を取得
+		Addr: ":" + os.Getenv("PORT"),
 	}
 
 	// /post/へのリクエストをハンドラ関数'handleRequest'へリダイレクト
 	// 全てのハンドラ関数は第1引数に'ResponseWriter'をとり、
 	// 第2引数に'Request'をとるので改めて引数を渡す必要はない
 	http.HandleFunc("/post/", handleRequest)
-	log.Println("start http listenig 127.0.0.1:8080")
+	log.Println("start http listenig :" + os.Getenv("PORT"))
 	server.ListenAndServe()
 }
 
