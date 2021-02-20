@@ -22,8 +22,15 @@ var DB *sql.DB
 // init 初期化関数でデータベースのハンドルを生成
 func init() {
 	var err error
+
+	// Herokuからデータソース名を取得
+	dataSourceName := os.Getenv("DATABASE_URL")
+	if dataSourceName == "" {
+		dataSourceName = "user=kazuhe dbname=kazuhe password=kazuhe sslmode=disable"
+	}
+
 	// 'sql.Open'は単にその後のDBへの接続に必要になる構造体を設定するだけでデータベースに接続する訳ではない
-	DB, err = sql.Open("postgres", os.Getenv("DATABASE_URL"))
+	DB, err = sql.Open("postgres", dataSourceName)
 	if err != nil {
 		log.Fatalf("Error openig database: %q", err)
 	}
